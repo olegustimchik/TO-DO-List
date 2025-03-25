@@ -1,6 +1,6 @@
-import { GenericDto }                                from "@/core/abstracts/generic.dto";
-import { Expose, Type }                                    from "class-transformer";
-import {  IsString, IsEmail, MinLength, IsOptional, IsNumber } from "class-validator";
+import { GenericDto }                                              from "@/core/abstracts/generic.dto";
+import { Expose, Type }                                            from "class-transformer";
+import {  IsString, MinLength, IsOptional, IsNumber, Min, IsUUID } from "class-validator";
 
 export class ListCreate extends GenericDto {
   @Expose()
@@ -19,25 +19,27 @@ export class ListUpdate extends GenericDto {
 
 export class ListDelete extends GenericDto {
   @Expose()
-  @IsString()
+  @Type(() => String)
+  @IsUUID()
   id: string;
 }
 
-
 export class ListGet extends GenericDto {
   @Expose()
-  @IsString()
+  @IsUUID()
   id: string;
 }
 
 export class ListGetAll extends GenericDto {
   @Expose()
-  @Type(() => Number)
   @IsNumber()
-  take: number; 
+  @Type(() => Number)
+  @Min(0)
+  take: number;
 
   @Expose()
-  @Type(() => Number)
   @IsNumber()
+  @Type(() => Number)
+  @Min(0)
   skip: number;
 }

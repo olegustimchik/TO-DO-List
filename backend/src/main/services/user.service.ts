@@ -1,9 +1,8 @@
 import { UserEntity }       from "@/main/entities/user.entity";
+import { HashService }      from "@/main/services/hash.service";
 import { Injectable }       from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository }       from "typeorm";
-
-import { HashService }      from "./hash.service";
 
 @Injectable()
 export class UserService {

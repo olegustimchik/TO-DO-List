@@ -4,7 +4,6 @@ import { ValidationPipe }     from "@nestjs/common";
 import { NestFactory }        from "@nestjs/core";
 import * as dotenv            from "dotenv";
 import { AppModule }          from "src/app.module";
-import { AuthGuard } from "./main/quards/auth.quard";
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule, { bufferLogs: true });
