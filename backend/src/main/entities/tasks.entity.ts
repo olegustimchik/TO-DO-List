@@ -29,6 +29,6 @@ export class TasksEntity {
   @CreateDateColumn()
   createdAt!: Date;
 
-  @ManyToOne(() => ListsEntity, list => list.tasks)
+  @ManyToOne(() => ListsEntity, list => list.tasks, { onDelete: "CASCADE" })
   list!: ListsEntity;
 }

@@ -1,4 +1,4 @@
-import { ListsEntity }                                                         from "@/main/entities/lists.entity";
+import { UserListEntity }                                                      from "@/main/entities/user-list.entity";
 import { Entity, CreateDateColumn, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 
 @Entity("user")
@@ -24,6 +24,6 @@ export class UserEntity {
   @CreateDateColumn()
   createdAt!: Date;
 
-  @OneToMany(() => ListsEntity, list => list.user)
-  lists!: Array<ListsEntity>;
+  @OneToMany(() => UserListEntity, userListEntity => userListEntity.user, { eager: true })
+  userLists: Array<UserListEntity>;
 }

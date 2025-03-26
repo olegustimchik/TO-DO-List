@@ -24,7 +24,7 @@ export class TaskService {
   }
 
   public async getTaskById(id: string): Promise<TasksEntity> {
-    return await this.taskRepository.findOne({ where: { id } });
+    return await this.taskRepository.findOne({ where: { id }, relations: ["list"]});
   }
 
   public async saveTask(task: TasksEntity): Promise<TasksEntity> {

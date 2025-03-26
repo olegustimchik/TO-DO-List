@@ -40,3 +40,9 @@ export class TaskGet extends GenericDto {
   @IsUUID()
   id: string;
 }
+
+export class ChangeStatus extends GenericDto{ 
+  @Expose()
+  @IsBoolean()
+  completed: boolean; 
+}

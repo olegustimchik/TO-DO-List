@@ -15,6 +15,9 @@ import { ConfigService }     from "@nestjs/config";
 import { JwtModule }         from "@nestjs/jwt";
 import { TypeOrmModule }     from "@nestjs/typeorm";
 
+import { UserListEntity }    from "@/main/entities/user-list.entity";
+import { UserListService } from "@/main/services/user-list.service";
+
 @Module({
   imports: [JwtModule.registerAsync({
     useFactory: (configService: ConfigService) => {
@@ -24,8 +27,8 @@ import { TypeOrmModule }     from "@nestjs/typeorm";
       };
     },
     inject: [ConfigService],
-  }), TypeOrmModule.forFeature([UserEntity, ListsEntity, TasksEntity])],
+  }), TypeOrmModule.forFeature([UserEntity, ListsEntity, TasksEntity, UserListEntity])],
   controllers: [UserController, ListController, TaskController],
-  providers  : [UserService, HashService, ListService, ListToRequestData, TaskService, TaskToRequestData],
+  providers  : [UserService, HashService, ListService, ListToRequestData, TaskService, TaskToRequestData, UserListService],
 })
 export class MainModule {}

@@ -1,6 +1,7 @@
 import { GenericDto }                                              from "@/core/abstracts/generic.dto";
 import { Expose, Type }                                            from "class-transformer";
-import {  IsString, MinLength, IsOptional, IsNumber, Min, IsUUID } from "class-validator";
+import {  IsString, MinLength, IsOptional, IsNumber, Min, IsUUID, IsEmail, IsEnum } from "class-validator";
+import { UserRoles } from "../enums/user-roles";
 
 export class ListCreate extends GenericDto {
   @Expose()
@@ -42,4 +43,15 @@ export class ListGetAll extends GenericDto {
   @Type(() => Number)
   @Min(0)
   skip: number;
+}
+
+export class addNewUser extends GenericDto { 
+  @Expose()
+  @IsEmail()
+  email: string;
+
+  @Expose()
+  @IsString()
+  @IsEnum(UserRoles)
+  role: UserRoles;
 }

@@ -2,8 +2,8 @@ import { LoginPage } from './pages/login'
 import { SignupPage } from './pages/signup'
 import './App.css'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { login } from './redux/slicers/auth.slicer'
 import { ListPage } from './pages/list.page'
+import { TaskPage } from './pages/tasks.page'
 
 function App() {
 
@@ -18,7 +18,7 @@ function App() {
             <Route
               path="/signup"
               element={<SignupPage />} />
-            
+            <Route path="/lists/:id/tasks" element={<TaskPage />} />
             <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
     </>

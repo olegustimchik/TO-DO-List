@@ -1,6 +1,6 @@
-import { UserEntity }                                                                     from "@/main/entities//user.entity";
-import { TasksEntity }                                                                    from "@/main/entities/tasks.entity";
-import { Entity, CreateDateColumn, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from "typeorm";
+import { TasksEntity }                                                         from "@/main/entities/tasks.entity";
+import { UserListEntity }                                                      from "@/main/entities/user-list.entity";
+import { Entity, CreateDateColumn, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 
 @Entity("lists")
 export class ListsEntity {
@@ -15,9 +15,9 @@ export class ListsEntity {
   @CreateDateColumn()
   createdAt!: Date;
 
-  @ManyToOne(() => UserEntity, user => user.lists)
-  user!: UserEntity;
+  @OneToMany(() => UserListEntity, userListEntity => userListEntity.list, { eager: true })
+  usersLists: Array<UserListEntity>;
 
-  @OneToMany(() => TasksEntity, task => task.list, { eager: true, onDelete: "CASCADE" })
+  @OneToMany(() => TasksEntity, task => task.list, { eager: true })
   tasks!: Array<TasksEntity>;
 }

@@ -7,18 +7,18 @@ import { Repository }       from "typeorm";
 export class ListService {
   constructor(@InjectRepository(ListsEntity) private readonly listRepository: Repository<ListsEntity>) { }
 
-  public async createList(name: string, userId: string): Promise<ListsEntity> {
-    return await this.listRepository.save({ name, user: { id: userId } });
+  public async createList(name: string): Promise<ListsEntity> {
+    return await this.listRepository.save({ name });
   }
 
   public async getListsByUserId(userId: string, take: number, skip: number): Promise<Array<ListsEntity>> {
     return await this.listRepository.find({
-      where: { user: { id: userId } }, take, skip, order: { createdAt: "DESC" },
+      where: { usersLists: { user: { id: userId } } }, take, skip, order: { createdAt: "DESC" },
     });
   }
 
   public async getListsCount(userId: string): Promise<number> {
-    return await this.listRepository.count({ where: { user: { id: userId } } });
+    return await this.listRepository.count({ where: { usersLists: { user: { id: userId } } } });
   }
 
   public async getListById(id: string): Promise<ListsEntity> {
